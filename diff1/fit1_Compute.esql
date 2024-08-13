@@ -1,0 +1,29 @@
+DECLARE iv SHARED CHARACTER 'hakuna matata';
+
+CREATE COMPUTE MODULE fit1_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+--		Set OutputRoot.Properties =InputRoot.Properties;
+--		Set OutputRoot.HTTPInputHeader = InputRoot.HTTPInputHeader;
+		
+		
+--		Create FIELD OutputRoot.MQRFH2;
+--		Declare mqs REFERENCE TO OutputRoot.MQRFH2;
+--		 
+--		 Set mqs.Header_name='MyHeader';
+--		 Set mqs.Message_Type = 'MyMessageType';
+
+		set OutputRoot.MQRFH2.data.name='Ishwar';
+		
+		Set OutputRoot.JSON.Data = InputRoot.XMLNSC;
+		-- Set OutputRoot.XMLNSC.data='hey this is my body';
+		
+	END;
+END MODULE;
