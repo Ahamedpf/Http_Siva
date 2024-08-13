@@ -1,0 +1,18 @@
+
+
+CREATE COMPUTE MODULE eval_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		Declare inref REFERENCE TO InputRoot.XMLNSC.Number;
+		--Declare solution INTEGER;
+		Set OutputRoot.XMLNSC.solution.ok= EVAL ('inref.num1' || inref.multiple || 'inref.num2');
+	END;
+END MODULE;
